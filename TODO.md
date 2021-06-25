@@ -15,3 +15,23 @@
   * Decision Tree?
   * Random Forest?
   * GradientBoosting?
+
+
+
+* __func()__ Logistic
+  * Call Data Cleaning Module to One Hot Encode x Columns
+  * Create Model
+  * Fit
+  * Predict
+  * Cross Validate
+  * Tune Hyperparameters
+  * Evaluate Scores
+  * Evaluate against model
+
+
+
+* __func()__ Decision Tree
+  * Create model
+  * Fit
+  * Predict
+  * Hyperparameters max_depth
