@@ -6,10 +6,14 @@ import numpy as np
 import CLFScores
 
 
-def Model(X, y, **kwargs):
+def Model(X, y, fit=True, **kwargs):
     X_train, X_test, y_train, y_test = train_test_split(X, y)
     clf = DecisionTreeClassifier(**kwargs)
-    clf.fit(X_train, y_train)
+
+    if fit:
+        clf.fit(X_train, y_train)
+    else:
+        return clf
 
     return clf, X_test, y_test
 
