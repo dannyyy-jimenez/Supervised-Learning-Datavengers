@@ -4,7 +4,6 @@ from sklearn.metrics import recall_score, accuracy_score, precision_score, confu
 import pandas as pd
 import numpy as np
 import CLFScores
-from datetime import datetime
 
 
 def Model(X, y, **kwargs):
@@ -37,27 +36,22 @@ def Optimize(X, y, **kwargs):
 
 if __name__ == "__main__":
     X = pd.read_csv('../data/churn_train.csv')
-    X['last_trip_date'][0]
-    X['last_trip_date'] = X['last_trip_date'].apply(lambda x: datetime.strptime(x, '%Y-%m-%d'))
-    y = (X['last_trip_date'] > datetime(2014, 6, 1)).astype(int)
-    y
+    X['city'] = X['city'].apply(lambda x: np.random.choice([0, 1, 2]))
+    X['phone'] = X['phone'].apply(lambda x: np.random.choice([0, 1]))
+    X['luxury_car_user'] = X['luxury_car_user'].apply(lambda x: np.random.choice([0, 1]))
+    X.drop(columns=['last_trip_date', 'signup_date'], inplace=True)
+    X = X[X.notna().all(axis=1)]
+    y = np.random.choice([False, True], size=X.shape[0])
 
-    # X['city'] = X['city'].apply(lambda x: np.random.choice([0, 1, 2]))
-    # X['phone'] = X['phone'].apply(lambda x: np.random.choice([0, 1]))
-    # X['luxury_car_user'] = X['luxury_car_user'].apply(lambda x: np.random.choice([0, 1]))
-    # X.drop(columns=['last_trip_date', 'signup_date'], inplace=True)
-    # X = X[X.notna().all(axis=1)]
-    # y = np.random.choice([False, True], size=X.shape[0])
-    #
-    # model, X_test, y_test = Model(X, y, random_state=42)
-    #
-    # accuracy, precision, recall = Scores(model, X_test, y_test)
-    #
-    # best_model, best_params = Optimize(X, y, random_state=42)
-    #
-    # Scores(best_model, X_test, y_test)
-    # CLFScores.PlotConfusionMatrix(best_model, X_test, y_test)
-    # CLFScores.PlotRocCurve(best_model, X_test, y_test, name="Decision Tree")
-    #
-    # CLFScores.PermutationImportance(best_model, X.columns, X_test, y_test)
+    model, X_test, y_test = Model(X, y, random_state=42)
+
+    accuracy, precision, recall = Scores(model, X_test, y_test)
+
+    best_model, best_params = Optimize(X, y, random_state=42)
+
+    Scores(best_model, X_test, y_test)
+    CLFScores.PlotConfusionMatrix(best_model, X_test, y_test)
+    CLFScores.PlotRocCurve(best_model, X_test, y_test, name="Decision Tree")
+
+    CLFScores.PermutationImportance(best_model, X.columns, X_test, y_test)
     pass
