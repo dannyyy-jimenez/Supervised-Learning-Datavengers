@@ -43,9 +43,9 @@ if __name__ == "__main__":
     best_model, best_params = Optimize(X, y, random_state=42)
     unfitted_best_model = Model(X, y, False, **best_params)
 
-    CLFScores.Scores(unfitted_best_model, X_test, y_test)
-    CLFScores.PlotConfusionMatrix(best_model, X_test, y_test)
-    CLFScores.PlotRocCurve(best_model, X_test, y_test, name="Gradient Boosting Tree")
+    CLFScores.Scores(unfitted_model, X_test, y_test)
+    CLFScores.PlotConfusionMatrix(model, X_test, y_test)
+    CLFScores.PlotRocCurve(model, X_test, y_test, name="Gradient Boosting Tree")
 
-    CLFScores.PermutationImportance(best_model, X.columns, X_test, y_test)
+    CLFScores.PermutationImportance(model, X.columns, X_test, y_test)
     pass
