@@ -35,7 +35,7 @@ def Optimize(X, y, **kwargs):
 
 
 if __name__ == "__main__":
-    X = pd.read_csv('../data/churn_train.csv')
+    X = pd.read_csv('./data/churn_train.csv')
     X['city'] = X['city'].apply(lambda x: np.random.choice([0, 1, 2]))
     X['phone'] = X['phone'].apply(lambda x: np.random.choice([0, 1]))
     X['luxury_car_user'] = X['luxury_car_user'].apply(lambda x: np.random.choice([0, 1]))
