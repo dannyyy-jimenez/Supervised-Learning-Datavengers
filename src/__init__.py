@@ -47,8 +47,6 @@ def LogisticRegression(X, y, **kwargs):
     CLFScores.PlotConfusionMatrix(best_model, X_test, y_test, filename="Decision-Tree-Best")
     CLFScores.PlotRocCurve(best_model, X_test, y_test, filename="Logistic-Regression-Best", name="Logistic-Regression Best")
 
-    CLFScores.PermutationImportance(best_model, X_test.columns, X_test, y_test, filename="Logistic-Regression-Best")
-
     return best_model
 
 
@@ -94,7 +92,7 @@ def RandomForest(X, y, **kwargs):
 # <editor-fold> Decision Tree
 
 decision_tree_best_model = DecisionTree(X_train, y_train, random_state=45)
-CLFScores.FinalScores(decision_tree_best_model, X_test, y_test)
+CLFScores.FinalScores(decision_tree_best_model, "Decision Tree", X_test, y_test)
 
 # </editor-fold>
 
@@ -102,20 +100,20 @@ CLFScores.FinalScores(decision_tree_best_model, X_test, y_test)
 # <editor-fold> Random Forest
 
 random_forest_best_model = RandomForest(X_train, y_train, random_state=45)
-CLFScores.FinalScores(random_forest_best_model, X_test, y_test)
+CLFScores.FinalScores(random_forest_best_model, "Random Forest", X_test, y_test)
 
 # </editor-fold>
 
 # <editor-fold> Gradient Boosting
 
 gradient_boosting_best_model = GradientBoosting(X_train, y_train, random_state=45)
-CLFScores.FinalScores(gradient_boosting_best_model, X_test, y_test)
+CLFScores.FinalScores(gradient_boosting_best_model, "Gradient Boosting", X_test, y_test)
 
 # </editor-fold>
 
 # <editor-fold> LogisticRegression
 
 logistic_regression_best_model = LogisticRegression(X_train, y_train, random_state=45)
-CLFScores.FinalScores(logistic_regression_best_model, X_test, y_test)
+CLFScores.FinalScores(logistic_regression_best_model, "Logistic Regression", X_test, y_test)
 
 # </editor-fold>

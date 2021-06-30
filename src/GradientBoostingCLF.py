@@ -19,7 +19,7 @@ def Model(X, y, fit=True, **kwargs):
 def Optimize(X, y, **kwargs):
     X_train, X_test, y_train, y_test = train_test_split(X, y, **kwargs)
 
-    optimizers = {'learning_rate': [0.1, 0.4, 0.7, 1], 'subsample': [0.2, 0.5, 1], 'max_depth': [1, 3, 10], 'min_samples_split': [2, 10], 'max_features': ['sqrt', 'log2', 2, 5, None]}
+    optimizers = {'learning_rate': [0.1, 0.4, 1], 'subsample': [0.2, 1], 'max_depth': [1, 3], 'min_samples_split': [2, 10], 'max_features': ['sqrt', 'log2', None]}
     grid = GridSearchCV(GradientBoostingClassifier(**kwargs), optimizers, verbose=3, n_jobs=-1)
     grid.fit(X_train, y_train)
     return grid.best_estimator_, grid.best_params_
